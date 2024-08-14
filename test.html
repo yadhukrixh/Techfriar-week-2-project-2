@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks and Payment History</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs-container {
+            margin-bottom: 20px;
+        }
+
+        .tabs-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tabs-navigation {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .tab:hover {
+            background-color: #f8f8f8;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #76797c;
+            font-weight: bold;
+        }
+
+        .view-all {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 0.875rem;
+        }
+
+        .tasks-table, .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .tasks-table th, .tasks-table td, .payment-table th, .payment-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .tasks-table th, .payment-table th {
+            background-color: #f0f0f0;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.875rem;
+            background-color: #7c7777;
+            color: #35373a;
+            border: 1px solid #3f4142;
+        }
+
+        
+        
+        .task-row td {
+            padding: 10px;
+        }
+
+        .payment-row td {
+            padding: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tasks">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <h2>Tasks</h2>
+                    <a href="#" class="view-all">View all</a>
+                </div>
+                <div class="tabs-navigation">
+                    <button class="tab active">My tasks</button>
+                    <button class="tab">Overdue</button>
+                    <button class="tab">Assigned by me</button>
+                </div>
+            </div>
+            <table class="tasks-table">
+                <thead>
+                    <tr>
+                        <th>Task</th>
+                        <th>Category</th>
+                        <th>Due date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="tasks-tbody">
+                    <!-- Task rows will be dynamically generated here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="payment-history">
+            <div class="payment-header">
+                <h2>Payment history</h2>
+                <a href="#" class="view-all">View all</a>
+            </div>
+            <table class="payment-table">
+                <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Date of transaction</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody id="payment-tbody">
+                    <!-- Payment rows will be dynamically generated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const tasksData = [
+            {
+                task: 'Update Tax Document for Alphalinx...',
+                category: 'Compliance',
+                dueDate: '23/11/23',
+                status: 'Request sent'
+            },
+            {
+                task: 'Update KYC document',
+                category: 'Compliance',
+                dueDate: '23/11/23',
+                status: 'Request sent'
+            },
+            {
+                task: 'Add clearer photo for visa application',
+                category: 'Visa center',
+                dueDate: '23/11/23',
+                status: 'Pending action'
+            },
+            {
+                task: 'Document not clear: please add new file',
+                category: 'Visa center',
+                dueDate: '23/11/23',
+                status: 'Pending action'
+            }
+        ];
+
+        const paymentData = [
+            {
+                transactionId: '#764657758',
+                date: '23/01/19',
+                amount: '$5.99',
+                description: 'Mailbox'
+            },
+            {
+                transactionId: '#764657758',
+                date: '22/01/19',
+                amount: '$99',
+                description: 'Registration (upgrade)'
+            },
+            {
+                transactionId: '#764657758',
+                date: '21/01/19',
+                amount: '$5.99',
+                description: 'Mailbox'
+            },
+            {
+                transactionId: '#764657758',
+                date: '19/01/19',
+                amount: '$5.99',
+                description: 'Mailbox'
+            },
+            {
+                transactionId: '#764657758',
+                date: '09/01/19',
+                amount: '$5.99',
+                description: 'Mailbox'
+            },
+            {
+                transactionId: '#764657758',
+                date: '23/12/18',
+                amount: '$5.99',
+                description: 'Mailbox'
+            }
+        ];
+
+        function getStatusClass(status) {
+            switch (status) {
+                case 'Request sent':
+                    return 'request-sent';
+                case 'Pending action':
+                    return 'pending-action';
+                default:
+                    return '';
+            }
+        }
+
+        function renderTasksTable(tasks) {
+            const tbody = document.getElementById('tasks-tbody');
+            tasks.forEach(task => {
+                const row = document.createElement('tr');
+                row.classList.add('task-row');
+                
+                row.innerHTML = `
+                    <td>${task.task}</td>
+                    <td>${task.category}</td>
+                    <td>${task.dueDate}</td>
+                    <td><span class="status ${getStatusClass(task.status)}">${task.status}</span></td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        function renderPaymentTable(payments) {
+            const tbody = document.getElementById('payment-tbody');
+            payments.forEach(payment => {
+                const row = document.createElement('tr');
+                row.classList.add('payment-row');
+                
+                row.innerHTML = `
+                    <td>${payment.transactionId}</td>
+                    <td>${payment.date}</td>
+                    <td>${payment.amount}</td>
+                    <td>${payment.description}</td>
+                `;
+
+                tbody.appendChild(row);
+            });
+        }
+
+        // Render the tasks and payment history tables
+        renderTasksTable(tasksData);
+        renderPaymentTable(paymentData);
+    </script>
+</body>
+</html>

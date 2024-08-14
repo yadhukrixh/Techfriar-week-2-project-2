@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <!-- Nav items -->
+    <nav>
+
+        <!-- nav ;ogo and heading -->
+        <div class="nav-container">
+            <div class="nav-header">
+                <div class="nav-logo">
+                    <img src="./assets/photos/icons/logo.svg" alt="">
+                    <h3>E-Dashboard</h3>
+                </div>
+
+                <div class="hamburger">
+                    <img src="./assets/photos/icons/hamburger.svg" alt="">
+                </div>
+            </div>
+
+            <div class="nav-items">
+                <div class="company-profile" >
+                    <span class="company-profile-pic" id="company-profile-pic">
+                        <!-- profile pic dynamically add here -->
+                    </span>
+                    <p class="company-profile-name" id="company-profile-name">
+                        <!-- profile name dynamically add here -->
+                    </p>
+                    <img src="./assets/photos/icons/arrow-down.svg"  class="drop-down-button" alt="">
+                </div>
+
+
+                <div class="nav-list">
+                    <ul>
+                        <a href="" class="active">
+                            <li class="each-item">
+                                <img src="./assets/photos/icons/widgets.svg" alt="">
+                                <p>Dashboard</p>
+                            </li>
+                        </a>
+
+                        <a href="">
+                            <li class="each-item">
+                                <img src="./assets/photos/icons/chart.svg" alt="">
+                                <p>My Bussiness</p>
+                                <img src="./assets/photos/icons/arrow-drop-down-fill.svg" alt="">
+                            </li>
+                        </a>
+
+
+                        <a href="">
+                            <li class="each-item">
+                                <img src="./assets/photos/icons/financial.svg" alt="">
+                                <p>Financial Resources</p>
+                                <img src="./assets/photos/icons/arrow-drop-down-fill.svg" alt="">
+                            </li>
+                        </a>
+
+                        <a href="">
+                            <li class="each-item">
+                                <img src="./assets/photos/icons/mail.svg" alt="">
+                                <p>Mailbox</p>
+                            </li>
+
+                            <a href="">
+                                <li class="each-item">
+                                    <img src="./assets/photos/icons/visa.svg" alt="">
+                                    <p>Mailbox</p>
+                                </li>
+                            </a>
+
+                            <a href="">
+                                <li class="each-item">
+                                    <img src="./assets/photos/icons/compliance.svg" alt="">
+                                    <p>Compliance</p>
+                                    <span class="compliance" id="compliance">
+                                        <!-- compliance number dynamically add here -->
+                                    </span>
+                                </li>
+                            </a>
+                        </a>
+                    </ul>
+                </div>
+
+                <div class="profile-center">
+                    <ul>
+                        <a href="">
+                            <li>
+                                <img src="./assets/photos/icons/notifications.svg" alt="">
+                                <p>Notification</p>
+                            </li>
+                        </a>
+
+                        <a href="">
+                            <li>
+                                
+                                <img src="./assets/photos/icons/help.svg" alt="">
+                                <p>Help center</p>
+                                <img src="./assets/photos/icons/menu.svg" class="menu-icon" alt="" style="position: absolute; right: 0;">
+                            </li>
+                        </a>
+
+                        <a href="">
+                            <li>
+                                <!-- Profile section, here name,email appears of profile -->
+                                <span class="profile-pic" id="profile-pic">
+                                    <!-- profile pic appears here -->
+                                </span>
+
+                                <div class="profile-details">
+                                    <p class="profile-name" id="profile-name">
+                                        <!-- profile name appears here -->
+                                    </p>
+                                    <p class="profile-email" id="profile-email">
+                                        <!-- email appears here -->
+                                    </p>
+                                </div>
+                                <img src="./assets/photos/icons/menu.svg" alt="" class="menu-icon" style="position: absolute; right: 0;">
+                            </li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+
+        </div>
+    </nav>
+    
+
+    <!-- hero section -->
+    <section class="hero-section">
+
+        <!-- to greet the user according to time and their name -->
+        <div class="greetings">
+            <h2>
+                <span id="time-according-greetings">
+                    <!-- Greetings according to current time dynamically adds here-->
+                </span>
+                <span id="user-name" class="user-name">
+                    <!-- Name dynamically adds here -->
+                </span>
+                <img src="./assets/photos/wave.svg" alt="">
+            </h2>
+            <p>Welcome back!</p>
+        </div>
+
+
+        <!-- Document Status -->
+        <div class="documents-status">
+            <div class="status-card">
+                <!-- image of verified carrds -->
+                <img src="./assets/photos/verified-card.svg" alt="" class="verified-cards-pic">
+
+                <h2 class="card-heading"> All your <span>documents</span> are <br><span class="weighted-font">up to date!</span></h2>
+
+                <img src="./assets/photos/stars.svg" alt="" class="stars">
+
+                <!-- Vertical line on  card -->
+                <span class="horizontal-line"></span>
+
+                <!-- upcoming document updates -->
+                <div class="upcoming-updates">
+                    <h2>
+                        You have <span>3 upcoming</span> document <br> updates in January.
+                    </h2>
+
+                    <!-- Button to redirect to update -->
+                    <button>
+                        <!-- Have to rotate image into 270 deg -->
+                        <img src="./assets/photos/icons/arrow-down.svg" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Applications status -->
+         <div class="application-status">
+            <!-- application status card -->
+            <div class="application-status-card">
+                <!-- piechart setting as background -->
+                <canvas class="pie-chart" id="pieChart" width="400" height="400" style="display: none;"></canvas>
+                <!-- Numbers of application -->
+                <div id="pie-chart-main-div" class="pie-chart-main-div">
+                    <div class="contents-on-pie-chart">
+                        <span id="total-application-number">
+                            <!-- application numbers dynamically add here -->
+                        </span>
+                        <p>Applications</p>
+                        
+                    </div>
+                </div>
+
+                <!-- Color indication fot the pie chart -->
+                <div class="color-list">
+                    <ul>
+                        <li> <span class="incomplete"></span><p>Incomplete</p></li>
+                        <li><span class="pending"></span><p>Pending Approval</p></li>
+                        <li><span class="approved"></span><p>Approved</p></li>
+                    </ul>
+                </div>
+            </div>
+         </div>
+
+         <!-- Mailbox -->
+        <div class="common-box">
+
+            <!-- mail head part -->
+            <div class="box-headingAndDescription">
+                <div class="box-heading">
+                    <h2>Mailbox</h2>
+                    <a href="#">View all</a>
+                </div>
+                <!-- mail head description -->
+                <p>
+                    Check on your all your mail in one go.
+                </p>
+            </div>
+
+            <!-- mail box functionalities -->
+            <div class="mail-box-options">
+                <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/tick-mark.svg" alt="">
+                    <div class="options-caption">
+                        <span>New</span>
+                        <span class="count" id="new-mails">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Vertical line between  -->
+                 <span class="vertical-line"></span>
+
+                 <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/3-dots.svg" alt="">
+                    <div class="options-caption">
+                        <span>Requested</span>
+                        <span class="count" id="requested-mails">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Vertical line between  -->
+                 <span class="vertical-line"></span>
+
+                 <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/bell.svg" alt="">
+                    <div class="options-caption">
+                        <span>Action taken</span>
+                        <span class="count" id="action-taken-mails">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+
+        <!-- Legal complaiance -->
+        <div class="common-box">
+
+            <!-- legal compliance head part -->
+            <div class="box-headingAndDescription">
+                <div class="box-heading">
+                    <h2>Legal compliance</h2>
+                    <a href="#">View all</a>
+                </div>
+                <!-- mail head description -->
+                <p>
+                    Keep your requirements up to date.
+                </p>
+            </div>
+
+            <!-- mail box functionalities -->
+            <div class="mail-box-options">
+                <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/tick-mark.svg" alt="">
+                    <div class="options-caption">
+                        <span>New</span>
+                        <span class="count" id="new-compliances">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Vertical line between  -->
+                 <span class="vertical-line"></span>
+
+                 <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/3-dots.svg" alt="">
+                    <div class="options-caption">
+                        <span>In progress</span>
+                        <span class="count" id="progress-compliances">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Vertical line between  -->
+                 <span class="vertical-line"></span>
+
+                 <!-- Each option -->
+                <div class="options">
+                    <img src="./assets/photos/icons/bell.svg" alt="">
+                    <div class="options-caption">
+                        <span>To approve</span>
+                        <span class="count" id="to-approve-compliances">
+                            <!-- Number Dynamically add here -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- table section -->
+    <section class="table-section">
+        <div class="tasks">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <h2>Tasks</h2>
+                    <a href="#" class="view-all">View all</a>
+                </div>
+                <div class="tabs-navigation">
+                    <button class="tab active">My tasks</button>
+                    <button class="tab">Overdue</button>
+                    <button class="tab">Assigned by me</button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="tasks-table">
+                    <thead>
+                        <tr>
+                            <th>Task</th>
+                            <th>Category</th>
+                            <th>Due date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tasks-tbody">
+                        <!-- Task rows will be dynamically generated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="payment-history">
+            <div class="tabs-header">
+                <h2>Payment history</h2>
+                <a href="#" class="view-all">View all</a>
+            </div>
+            <div class="table-container">
+                <table class="payment-table">
+                    <thead>
+                        <tr>
+                            <th>Transaction ID</th>
+                            <th>Date of transaction</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody id="payment-tbody">
+                        <!-- Payment rows will be dynamically generated here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="./assets/scripts/index.js"></script>
+</body>
+</html>
