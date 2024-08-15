@@ -747,6 +747,10 @@ nav{
         padding: 0;
     }
 
+    .greetings{
+        margin-left: 0;
+    }
+
     /* Table section */
     .table-section {
         min-width: 100%;
@@ -872,6 +876,7 @@ nav{
         display: block;
     }
 
+    /* dropdown toggle element */
     .open .arrow img {
         transform: rotate(180deg);
     }

@@ -291,6 +291,7 @@ renderPaymentTable(paymentData);
 
 
 // render for the mobile
+// task table
 function renderTasks(tasks) {
     const tasksContainer = document.getElementById('tasks-container');
     tasks.forEach(task => {
@@ -308,6 +309,9 @@ function renderTasks(tasks) {
     });
 }
 
+
+
+// transaction details table for mobile
 function renderTransactions(transactions) {
     const transactionsContainer = document.getElementById('transactions-container');
     transactions.forEach(transaction => {
@@ -340,6 +344,11 @@ renderTransactions(paymentData);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// to toggle use nav bar for the mobile
+
+
 let navBarToggle = document.querySelector('.menu-toggle');
 let navLinks = document.querySelector('.nav-items');
 
