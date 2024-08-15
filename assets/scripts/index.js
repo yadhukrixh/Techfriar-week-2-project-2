@@ -318,7 +318,7 @@ function renderTransactions(transactions) {
             <div>
                 <span class="amount">${transaction.amount}</span> <span class="arrow"><img src="./assets/photos/icons/arrow-down-slim.svg" id="arrow"></span></h4>
             </div
-            <div class="category"><span class="date">${transaction.date}</span></div>
+            <div class="category"><span class="date"><span class="date">${transaction.date}</span></div>
             <div class="transaction-details">
                 <div>Description</div>
                 <div><span class="highlight">${transaction.description}</span></div>
