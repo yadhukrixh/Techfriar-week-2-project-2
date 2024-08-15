@@ -681,4 +681,202 @@ nav{
 
 /* Mobile responsive styles */
 
+@media(max-width : 480px){
 
+    /* align width of body */
+    body{
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    /* nav drop down */
+    nav{
+        top:0;
+        position: fixed;
+        z-index: 10;
+        width: 100%;
+        height: 70px;
+    }
+
+    /* hide by default */
+    .nav-items{
+        display: none;
+    }
+
+    /* visible while active */
+    .navItems-active{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        font-size:20px;
+    }
+
+    /* gap betwwen nav items */
+    .nav-list ul{
+        row-gap: 20px;
+    }
+    .nav-list ul a{
+        width: 100dvw;
+    }
+
+    /* logo and ham burger menu */
+    .nav-header{
+        width: auto;
+        justify-content: space-between;
+        margin-right: 10px;
+        position: relative;
+    }
+
+    /* Section */
+    .hero-section{
+        width: 100%;
+        border: 0;
+        margin-top: 70px;
+        align-items: center;
+    }
+
+    .table-section{
+        min-width: 100dvw;
+        padding: 0;
+    }
+
+    
+
+    .tasks,.payment-history{
+        display: none;
+    }
+
+    .mobile-view-tables{
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 100%;
+        
+    }
+
+    .mobile-tables{
+        padding: 20px;
+    }
+
+    /* for mobile view tables */
+
+
+
+    .task-container{
+        width: 100%;
+    }
+    .section-header {
+        padding: 15px 0px;
+        font-weight: 700;
+        font-size: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .section-header a {
+        color: #515BAE;
+        font-size: 14px;
+    }
+
+    .task,
+    .transaction {
+        width: 100%;
+        padding: 0;
+        padding-top: 20px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .task:last-child,
+    .transaction:last-child {
+        border-bottom: none;
+    }
+
+    .task h4,
+    .transaction h4 {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 700;
+        color: #000;
+    }
+
+    
+    .transaction .category {
+        font-size: 14px;
+        color: #999;
+        margin-top: 5px;
+    }
+
+    .category-duedate{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .category,
+    .due-date {
+        display: flex;
+        flex-direction: column;
+        font-size: 14px;
+        color: #bbb;
+        margin-top: 3px;
+    }
+
+    .highlight{
+        color: #1E1F21;
+        font-size: 14px;
+        font-weight: 600;
+        margin-top: 5px;
+    }
+
+    .task .status {
+        font-size: 13px;
+        margin-top: 10px;
+        color: #6A6A6D;
+        cursor: pointer;
+    }
+
+    .transaction {
+        cursor: pointer;
+    }
+
+    .transaction h4 {
+        margin: 0;
+        font-size: 16px;
+        color: #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .transaction .amount {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .transaction .arrow {
+        transition: transform 0.2s;
+    }
+
+    .transaction.open .arrow {
+        transform: rotate(180deg);
+    }
+
+    .transaction-details {
+        display: none;
+        font-size: 14px;
+        color: #666;
+        margin-top: 10px;
+    }
+
+    .transaction.open .transaction-details {
+        display: block;
+    }
+
+    .open .arrow img{
+        transform: rotate(180deg);
+    }
+
+
+    
+}

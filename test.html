@@ -1,157 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasks and Payment History</title>
+    <title>Tasks and Transaction History</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
             color: #333;
         }
 
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
-        .tabs-container {
-            margin-bottom: 20px;
-        }
-
-        .tabs-header {
+        .section-header {
+            padding: 15px 20px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: bold;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 10px;
         }
 
-        .tabs-navigation {
-            display: flex;
-            border-bottom: 2px solid #e0e0e0;
+        .section-header a {
+            color: #007bff;
+            text-decoration: none;
         }
 
-        .tab {
-            padding: 10px 20px;
-            background-color: transparent;
-            border: none;
-            border-bottom: 3px solid transparent;
+        .task,
+        .transaction {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .task:last-child,
+        .transaction:last-child {
+            border-bottom: none;
+        }
+
+        .task h4,
+        .transaction h4 {
+            margin: 0;
+            font-size: 16px;
+            font-weight: normal;
+            color: #666;
+        }
+
+        .task .category,
+        .transaction .category {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .task .due-date {
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 3px;
+        }
+
+        .task .status {
+            font-size: 14px;
+            margin-top: 10px;
+            color: #007bff;
             cursor: pointer;
-            font-size: 1rem;
+        }
+
+        .transaction {
+            cursor: pointer;
+        }
+
+        .transaction h4 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .transaction .amount {
+            font-weight: bold;
             color: #333;
         }
 
-        .tab:hover {
-            background-color: #f8f8f8;
+        .transaction .arrow {
+            transition: transform 0.2s;
         }
 
-        .tab.active {
-            border-bottom: 2px solid #76797c;
-            font-weight: bold;
+        .transaction.open .arrow {
+            transform: rotate(180deg);
         }
 
-        .view-all {
-            color: #007bff;
-            text-decoration: none;
-            font-size: 0.875rem;
+        .transaction-details {
+            display: none;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
         }
 
-        .tasks-table, .payment-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
+        .transaction.open .transaction-details {
+            display: block;
         }
-
-        .tasks-table th, .tasks-table td, .payment-table th, .payment-table td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .tasks-table th, .payment-table th {
-            background-color: #f0f0f0;
-        }
-
-        .status {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.875rem;
-            background-color: #7c7777;
-            color: #35373a;
-            border: 1px solid #3f4142;
-        }
-
-        
-        
-        .task-row td {
-            padding: 10px;
-        }
-
-        .payment-row td {
-            padding: 10px;
-        }
-
     </style>
 </head>
+
 <body>
     <div class="container">
-        <div class="tasks">
-            <div class="tabs-container">
-                <div class="tabs-header">
-                    <h2>Tasks</h2>
-                    <a href="#" class="view-all">View all</a>
-                </div>
-                <div class="tabs-navigation">
-                    <button class="tab active">My tasks</button>
-                    <button class="tab">Overdue</button>
-                    <button class="tab">Assigned by me</button>
-                </div>
+        <!-- Tasks Section -->
+        <div class="section">
+            <div class="section-header">
+                <span>Tasks</span>
+                <a href="#">View all</a>
             </div>
-            <table class="tasks-table">
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Category</th>
-                        <th>Due date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody id="tasks-tbody">
-                    <!-- Task rows will be dynamically generated here -->
-                </tbody>
-            </table>
+            <div id="tasks-container">
+                <!-- Tasks will be dynamically inserted here -->
+            </div>
         </div>
 
-        <div class="payment-history">
-            <div class="payment-header">
-                <h2>Payment history</h2>
-                <a href="#" class="view-all">View all</a>
+        <!-- Transaction History Section -->
+        <div class="section">
+            <div class="section-header">
+                <span>Transaction history</span>
+                <a href="#">View all</a>
             </div>
-            <table class="payment-table">
-                <thead>
-                    <tr>
-                        <th>Transaction ID</th>
-                        <th>Date of transaction</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody id="payment-tbody">
-                    <!-- Payment rows will be dynamically generated here -->
-                </tbody>
-            </table>
+            <div id="transactions-container">
+                <!-- Transactions will be dynamically inserted here -->
+            </div>
         </div>
     </div>
 
@@ -222,54 +209,45 @@
             }
         ];
 
-        function getStatusClass(status) {
-            switch (status) {
-                case 'Request sent':
-                    return 'request-sent';
-                case 'Pending action':
-                    return 'pending-action';
-                default:
-                    return '';
-            }
-        }
-
-        function renderTasksTable(tasks) {
-            const tbody = document.getElementById('tasks-tbody');
+        function renderTasks(tasks) {
+            const tasksContainer = document.getElementById('tasks-container');
             tasks.forEach(task => {
-                const row = document.createElement('tr');
-                row.classList.add('task-row');
-                
-                row.innerHTML = `
-                    <td>${task.task}</td>
-                    <td>${task.category}</td>
-                    <td>${task.dueDate}</td>
-                    <td><span class="status ${getStatusClass(task.status)}">${task.status}</span></td>
+                const taskElement = document.createElement('div');
+                taskElement.className = 'task';
+                taskElement.innerHTML = `
+                    <h4>${task.task}</h4>
+                    <div class="category">Category: ${task.category}</div>
+                    <div class="due-date">Due date: ${task.dueDate}</div>
+                    <div class="status">${task.status}</div>
                 `;
-
-                tbody.appendChild(row);
+                tasksContainer.appendChild(taskElement);
             });
         }
 
-        function renderPaymentTable(payments) {
-            const tbody = document.getElementById('payment-tbody');
-            payments.forEach(payment => {
-                const row = document.createElement('tr');
-                row.classList.add('payment-row');
-                
-                row.innerHTML = `
-                    <td>${payment.transactionId}</td>
-                    <td>${payment.date}</td>
-                    <td>${payment.amount}</td>
-                    <td>${payment.description}</td>
+        function renderTransactions(transactions) {
+            const transactionsContainer = document.getElementById('transactions-container');
+            transactions.forEach(transaction => {
+                const transactionElement = document.createElement('div');
+                transactionElement.className = 'transaction';
+                transactionElement.innerHTML = `
+                    <h4>${transaction.transactionId} <span class="amount">${transaction.amount}</span> <span class="arrow">⌄</span></h4>
+                    <div class="category">${transaction.date}</div>
+                    <div class="transaction-details">
+                        <div>Description</div>
+                        <div>${transaction.description}</div>
+                    </div>
                 `;
-
-                tbody.appendChild(row);
+                transactionElement.onclick = function () {
+                    this.classList.toggle('open');
+                };
+                transactionsContainer.appendChild(transactionElement);
             });
         }
 
-        // Render the tasks and payment history tables
-        renderTasksTable(tasksData);
-        renderPaymentTable(paymentData);
+        // Render the tasks and transactions on page load
+        renderTasks(tasksData);
+        renderTransactions(paymentData);
     </script>
 </body>
+
 </html>

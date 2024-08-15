@@ -290,9 +290,68 @@ renderPaymentTable(paymentData);
 
 
 
+// render for the mobile
+function renderTasks(tasks) {
+    const tasksContainer = document.getElementById('tasks-container');
+    tasks.forEach(task => {
+        const taskElement = document.createElement('div');
+        taskElement.className = 'task';
+        taskElement.innerHTML = `
+            <h4>${task.task}</h4>
+            <div class="category-duedate">
+                <div class="category">Category: <span class="highlight">${task.category}</span></div>
+                <div class="due-date">Due date: <span class="highlight">${task.dueDate}<span class="highlight"></div>
+            </div>
+            <div class="status">${task.status}</div>
+        `;
+        tasksContainer.appendChild(taskElement);
+    });
+}
+
+function renderTransactions(transactions) {
+    const transactionsContainer = document.getElementById('transactions-container');
+    transactions.forEach(transaction => {
+        const transactionElement = document.createElement('div');
+        transactionElement.className = 'transaction';
+        transactionElement.innerHTML = `
+            <h4>${transaction.transactionId} 
+            <div>
+                <span class="amount">${transaction.amount}</span> <span class="arrow"><img src="./assets/photos/icons/arrow-down-slim.svg" id="arrow"></span></h4>
+            </div
+            <div class="category"><span class="date">${transaction.date}</span></div>
+            <div class="transaction-details">
+                <div>Description</div>
+                <div><span class="highlight">${transaction.description}</span></div>
+            </div>
+        `;
+        transactionElement.onclick = function () {
+            this.classList.toggle('open');
+        };
+        transactionsContainer.appendChild(transactionElement);
+    });
+}
+
+// Render the tasks and transactions on page load
+renderTasks(tasksData);
+renderTransactions(paymentData);
+
+
+
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let navBarToggle = document.querySelector('.menu-toggle');
+let navLinks = document.querySelector('.nav-items');
+
+if(navBarToggle && navLinks){
+    navBarToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('navItems-active');
+        navBarToggle.classList.toggle('navbar-active');
+        document.querySelector('.navbar-active') ? document.getElementById('navbar').style.height = '100%': document.getElementById('navbar').style.height = '88px';
+        const hamBurgerImg = document.getElementById('nav-control'); 
+        document.querySelector('.navbar-active') ? hamBurgerImg.src = './assets/photos/icons/hamburger-close.svg': hamBurgerImg.src = './assets/photos/icons/hamburger.svg';
+    })
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////

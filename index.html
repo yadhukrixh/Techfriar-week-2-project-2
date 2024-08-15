@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=01">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <title>Dashboard</title>
 </head>
 <body>
 
     <!-- Nav items -->
-    <nav>
+    <nav id="navbar">
 
-        <!-- nav ;ogo and heading -->
+        <!-- nav logo and heading -->
         <div class="nav-container">
             <div class="nav-header">
                 <div class="nav-logo">
@@ -19,8 +19,8 @@
                     <h3>E-Dashboard</h3>
                 </div>
 
-                <div class="hamburger">
-                    <img src="./assets/photos/icons/hamburger.svg" alt="">
+                <div class="hamburger menu-toggle">
+                    <img src="./assets/photos/icons/hamburger.svg" alt="" id="nav-control">
                 </div>
             </div>
 
@@ -335,6 +335,45 @@
 
     <!-- table section -->
     <section class="table-section">
+
+        <!-- tables for mobile view -->
+        <div class="mobile-view-tables" style="display: none;">
+
+            <!-- tasks section -->
+                <div class="mobile-tables">
+                    <div class="section-header">
+                        <span>Tasks</span>
+                        <a href="#">View all</a>
+                    </div>
+                    <div class="tabs-navigation">
+                        <button class="tab active">My tasks</button>
+                        <button class="tab">Overdue</button>
+                        <button class="tab">Assigned by me</button>
+                    </div>
+                    <div id="tasks-container">
+                        <!-- Tasks will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <!-- payment-history section  -->
+                <div class="mobile-tables">
+                    <div class="section-header">
+                        <span>Transaction history</span>
+                        <a href="#">View all</a>
+                    </div>
+                    <div id="transactions-container">
+                        <!-- Transactions will be dynamically inserted here -->
+                    </div>
+                </div>
+
+
+            </div>
+    
+
+        </div>
+
+
+        <!-- Task table for the desktop -->
         <div class="tasks">
             <div class="tabs-container">
                 <div class="tabs-header">
@@ -364,6 +403,8 @@
             </div>
         </div>
 
+
+        <!-- payment history table for desktop -->
         <div class="payment-history">
             <div class="tabs-header">
                 <h2>Payment history</h2>
