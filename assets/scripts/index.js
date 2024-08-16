@@ -57,12 +57,12 @@ document.getElementById('user-name').innerHTML = `${userName}! `;
 const applicationStatus = [
     {
         id: '1',
-        applicationNumbers: '50',
+        applicationNumbers: '30',
         applicationStatus: 'Approved'
     },
     {
         id: '2',
-        applicationNumbers: '30',
+        applicationNumbers: '56',
         applicationStatus: 'Pending'
     },
     {
